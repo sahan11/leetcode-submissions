@@ -15,7 +15,7 @@ public:
         if(root == NULL){
             return 0;
         }
-        return max(1 + dfs(root->left), 1 + dfs(root->right));
+        return 1 + max(dfs(root->left), dfs(root->right));
     }
     int maxDepth(TreeNode* root) {
         return dfs(root);
