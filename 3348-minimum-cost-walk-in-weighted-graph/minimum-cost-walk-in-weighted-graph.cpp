@@ -76,16 +76,16 @@ class DisjointSet {
 class Solution {
 public:
     vector<int> minimumCost(int n, vector<vector<int>>& edges, vector<vector<int>>& query) {
-        DisjointSet* ds = new DisjointSet(n);
+        DisjointSet ds(n);
         for(int i = 0;i<edges.size();i++) {
             int u = edges[i][0];
             int v = edges[i][1];
             int wt = edges[i][2];
-            ds->unionBySize(u, v, wt);
+            ds.unionBySize(u, v, wt);
         }
         vector<int> ans;
         for(int i = 0;i<query.size();i++) {
-            ans.push_back(ds->getMinDist(query[i][0], query[i][1]));
+            ans.push_back(ds.getMinDist(query[i][0], query[i][1]));
         }
 
         return ans;
