@@ -1,17 +1,22 @@
 class Solution {
 public:
     int numTeams(vector<int>& rating) {
-    int res = 0;
-    for (auto i = 1; i < rating.size() - 1; ++i) {
-        int less[2] = {}, greater[2] = {};
-        for (auto j = 0; j < rating.size(); ++j) {
-            if (rating[i] < rating[j])
-                ++less[j > i];
-            if (rating[i] > rating[j])
-                ++greater[j > i];
+        int res = 0;
+        for(int i = 1;i<rating.size() - 1;i++) {
+            vector<int> less(2, 0);
+            vector<int> more(2, 0);
+            // int res = 0;
+            for(int j = 0;j<rating.size();j++) {
+                if(j == i) continue;
+                if(rating[j] < rating[i]) {
+                    less[j < i]++;
+                }
+                else if(rating[j] > rating[i]) {
+                    more[j < i]++;
+                }
+            }
+            res += less[0] * more[1] + less[1] * more[0];
         }
-        res += less[0] * greater[1] + greater[0] * less[1];
+        return res;
     }
-    return res;
-}
 };
