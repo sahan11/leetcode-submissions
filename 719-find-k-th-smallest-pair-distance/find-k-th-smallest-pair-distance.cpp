@@ -19,7 +19,7 @@ public:
         int l = 0;
         int u = nums[n - 1];
         while(l < u) {
-            int mid = l + (u - l) / 2;
+            int mid = (l + u) >> 1;
             int cnt = check(nums, mid);
             if(cnt < k) {
                 l = mid + 1;
